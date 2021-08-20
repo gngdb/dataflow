@@ -5,7 +5,7 @@
 import multiprocessing as mp
 import time
 from collections import deque
-import tqdm
+from tqdm.auto import trange
 
 from ..utils import logger
 from ..utils.concurrency import DIE
@@ -67,7 +67,7 @@ def send_dataflow_zmq(df, addr, hwm=50, format=None, bind=False):
         tqdm_args = get_tqdm_kwargs(leave=True, smoothing=0.8)
         tqdm_args['bar_format'] = tqdm_args['bar_format'] + "{postfix}"
         while True:
-            with tqdm.trange(total, **tqdm_args) as pbar:
+            with trange(total, **tqdm_args) as pbar:
                 for dp in df:
                     start = time.time()
                     socket.send(dump_fn(dp), copy=False)

@@ -4,7 +4,7 @@
 import numpy as np
 import os
 import tarfile
-import tqdm
+from tqdm.auto import trange
 
 from ...utils import logger
 from ...utils.fs import download, get_dataset_path, mkdir_p
@@ -274,7 +274,7 @@ class ILSVRC12(ILSVRC12Files):
 
         with timed_operation('Loading Bounding Boxes ...'):
             cnt = 0
-            for k in tqdm.trange(len(imglist)):
+            for k in trange(len(imglist)):
                 fname = imglist[k][0]
                 fname = fname[:-4] + 'xml'
                 fname = os.path.join(bbox_dir, fname)

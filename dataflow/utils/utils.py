@@ -9,7 +9,7 @@ import os
 import sys
 from contextlib import contextmanager
 from datetime import datetime, timedelta
-from tqdm import tqdm
+from tqdm.auto import tqdm
 
 from . import logger
 from .concurrency import subproc_call

@@ -8,7 +8,7 @@ import pprint
 from collections import defaultdict, deque
 from copy import copy
 import six
-import tqdm
+from tqdm.auto import trange
 from termcolor import colored
 
 from ..utils import logger
@@ -57,7 +57,7 @@ class TestDataSpeed(ProxyDataFlow):
             self.ds.reset_state()
         itr = self.ds.__iter__()
         if self.warmup:
-            for _ in tqdm.trange(self.warmup, **get_tqdm_kwargs()):
+            for _ in trange(self.warmup, **get_tqdm_kwargs()):
                 next(itr)
         # add smoothing for speed benchmark
         with get_tqdm(total=self.test_size,
